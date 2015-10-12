@@ -11,7 +11,7 @@
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.3.3",
         "doctrine/doctrine-orm-module": "dev-master",
-        "hounddog/doctrine-data-fixture-module": "dev-master"
+        "sp/jms-serializer-module": "dev-master"
     },
     "minimum-stability": "dev"
 }
