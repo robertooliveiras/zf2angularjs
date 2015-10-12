@@ -7,6 +7,7 @@ use Zend\View\Model\JsonModel;
 
 class CategoriaController extends AbstractRestfulController
 {
+    //http get
     public function getList()
     {
         $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
@@ -35,23 +36,56 @@ class CategoriaController extends AbstractRestfulController
 
     }
 
+    //http get
     public function get($id)
     {
-
+        $em = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $data = $em->getRepository('Application\Entity\Categoria')->find($id);
+        return $data;
     }
 
+    //http post
     public function create($data)
     {
+        $categoriaService = $this->getServiceLocator()->get('Application\Service\Categoria');
 
+        $param = $data['nome'];
+
+        $categoria = $categoriaService->insert($param);
+
+        if ($categoria) {
+            return $categoria;
+        }
+
+        return array('success' => false);
     }
 
+    //http put
     public function update($id, $data)
     {
+        $categoriaService = $this->getServiceLocator()->get('Application\Service\Categoria');
+
+        $param['nome'] = $data['nome'];
+        $param['id'] = $id;
+
+        $categoria = $categoriaService->update($param);
+
+        if ($categoria) {
+            return $categoria;
+        }
+
+        return array('success' => false);
 
     }
 
+    //http delete
     public function delete($id)
     {
-
+        $categoriaService = $this->getServiceLocator()->get('Application\Service\Categoria');
+        $result = $categoriaService->delete($id);
+        if($result) {
+            return $result;
+        }
+        return array('success' => false);
     }
 }
