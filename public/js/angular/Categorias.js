@@ -14,6 +14,9 @@ categorias
                 })
                 .when('/categorias/novo/',{
                     templateUrl: 'js/angular/templates/categorias_novo.html'
+                })
+                .when('/categorias/editar/:id',{
+                    templateUrl: 'js/angular/templates/categorias_editar.html'
                 });
         }
     ]);
